@@ -6,10 +6,10 @@ import java.util.Random;
 public class KMPTest {
     @Test
     public void randomComparisonTest() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 3000; i++) {
             System.out.println("count:" + i);
             String randomText = generateRandomString(30);
-            String randomPattern = generateRandomString(4);
+            String randomPattern = generateRandomString(1);
             System.out.println("Text:" + randomText);
             System.out.println("Pattern:" + randomPattern);
             int expect = randomText.indexOf(randomPattern);
@@ -26,6 +26,7 @@ public class KMPTest {
 
     @Test
     public void simpleComparisonTest() {
+        testExample("BBCBDDCCDDCBABCBADDCDABBDCABBB", "DCDD", -1);
         testExample("ABBBBCBCBBBD", "BBBD", 8);
         testExample("ABABDABACDABABCABAB", "ABABCABAB",10);
     }
@@ -33,7 +34,8 @@ public class KMPTest {
 
 
     private void testExample(String text, String pattern, int expect) {
-        KMP kmp = new KMP(pattern);
+        //Here can be replaced
+        KMP kmp = new KMPWithMachineConcept(pattern);
         Assertions.assertEquals(expect, kmp.search(text));
     }
 

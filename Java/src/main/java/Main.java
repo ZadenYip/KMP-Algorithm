@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         String text = "ABBBBCBCBBBD";
         String pattern = "BBBD";
-        KMP kmp = new KMP(pattern);
+        KMP kmp = new KMPWithPMT(pattern);
 
         System.out.println(getMarkedText(text, pattern, kmp.search(text)));
     }
