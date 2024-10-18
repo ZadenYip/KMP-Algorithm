@@ -11,6 +11,10 @@ public class KMPWithMachineConcept implements KMP{
 
     private int[] buildMoveState(String pattern) {
         int patternLength = pattern.length();
+        /*
+        moveState数组比pattern长度多一个，最后一个状态表示终止状态
+        终止状态实际上就没必要存储了 所以也可以不加1
+         */
         int[] moveState = new int[patternLength + 1];
         int currentMaxLength = 0;
         moveState[0] = 0;
