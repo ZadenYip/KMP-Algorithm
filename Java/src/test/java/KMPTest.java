@@ -7,9 +7,9 @@ public class KMPTest {
     @Test
     public void randomComparisonTest() {
         for (int i = 0; i < 3000; i++) {
-            System.out.println("count:" + i);
+            System.out.println("code:" + i);
             String randomText = generateRandomString(30);
-            String randomPattern = generateRandomString(1);
+            String randomPattern = generateRandomString(3);
             System.out.println("Text:" + randomText);
             System.out.println("Pattern:" + randomPattern);
             int expect = randomText.indexOf(randomPattern);
@@ -40,6 +40,7 @@ public class KMPTest {
     }
 
     private String generateRandomString(int length) {
+        //这里可以修改随机的字符
         String alphabet = "ABCD";
         Random random = new Random();
         StringBuilder sb = new StringBuilder(length);
