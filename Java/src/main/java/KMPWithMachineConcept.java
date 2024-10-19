@@ -34,7 +34,7 @@ public class KMPWithMachineConcept implements KMP{
                     //这里不进入下一阶段是因为回溯了 此时要对比suffixIndex与进入下一个状态所需的字符是否一样
                 }
                 else {
-                    //此时已经是0状态 推进state即可
+                    //此时revertState已经是0状态又不匹配 推进state即可
                     state++;
                 }
             }
@@ -59,7 +59,7 @@ public class KMPWithMachineConcept implements KMP{
                     state = moveState[state];
                     //这里不进行input++, 因为回溯后要查看输入等于回溯后进入下一个状态的条件
                 } else {
-                    //零状态直接推进
+                    //零状态且不匹配不需要回溯 找下一个输入
                     input++;
                 }
             }
