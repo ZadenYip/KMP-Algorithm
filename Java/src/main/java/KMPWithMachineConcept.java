@@ -13,29 +13,29 @@ public class KMPWithMachineConcept implements KMP{
         int patternLength = pattern.length();
         //moveState状态机数组比pattern长度是多一个的，最后一个状态表示终止状态
         int[] moveState = new int[patternLength + 1];
-        int revertState = 0;
+        int shadowState = 0;
         /*
         状态机0和1肯定是没有公共前后缀, 所以回溯肯定是回到状态0
          */
         moveState[0] = 0;
         moveState[1] = 0;
 
-        int state = 2;
-        while (state < moveState.length) {
-            int suffixIndex = state - 1;
-            //pattern.charAt(revertState)为到达下一个状态需要的字符
-            if (pattern.charAt(suffixIndex) == pattern.charAt(revertState)) {
-                revertState++;
-                moveState[state] = revertState;
-                state++;
+        int settingState = 2;
+        while (settingState < moveState.length) {
+            int inputIndex = settingState - 1;
+            //pattern.charAt(shadowState)为影子状态到达下一个状态需要的字符
+            if (pattern.charAt(inputIndex) == pattern.charAt(shadowState)) {
+                moveState[settingState] = shadowState + 1;
+                shadowState++;
+                settingState++;
             } else {
-                if (revertState > 0) {
-                    revertState = moveState[revertState];
-                    //这里不进入下一阶段是因为回溯了 此时要对比suffixIndex与进入下一个状态所需的字符是否一样
+                if (shadowState > 0) {
+                    shadowState = moveState[shadowState];
+                    //这里不进入下一阶段是因为回溯了 此时要对比inputIndex与进入下一个状态所需的字符是否一样
                 }
                 else {
                     //此时revertState已经是0状态又不匹配 推进state即可
-                    state++;
+                    settingState++;
                 }
             }
         }
